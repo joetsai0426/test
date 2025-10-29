@@ -23,12 +23,12 @@ class TestSmsController
         {
             $a== 2;
 
-            log::info($a);
+
             dd($a);
 
         }
 
-        dd('測試用內容...' );
+        dd('測試用內容!' );
    
                 
     }
