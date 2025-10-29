@@ -16,12 +16,11 @@ class TestSmsController
             'content' => "[測試]這是用e8d的簡訊內容重構1021-3",
         ];
 
+
         $a = 3;
 
         if ($a > 3) {
             $a == 2;
-
-
             dd($a, '測試用的dd');
         }
 
