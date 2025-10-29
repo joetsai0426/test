@@ -81,6 +81,7 @@ pipeline {
             git config user.name "%GIT_USER%"
             git config user.email "joe_tsai@168money.com.tw"
 
+
             echo == 更新遠端引用 ==
             git fetch origin
 
