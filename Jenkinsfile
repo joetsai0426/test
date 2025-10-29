@@ -79,7 +79,7 @@ pipeline {
 
             echo == 設定使用者 ==
             git config user.name "%GIT_USER%"
-            git config user.email "%GIT_USER%@users.noreply.github.com"
+            git config user.email "joe_tsai@168money.com.tw"
 
             echo == 更新遠端引用 ==
             git fetch origin
