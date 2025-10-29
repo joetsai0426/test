@@ -6,9 +6,8 @@ use App\Http\Controllers\Api\V1\Backend\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class TestSmsController 
+class TestSmsController
 {
-
     public function test(Request $request)
     {
         // 寄送測試用資料
@@ -19,18 +18,13 @@ class TestSmsController
 
         $a = 3;
 
-        if( $a > 3 )
-        {
-            $a== 2;
+        if ($a > 3) {
+            $a == 2;
 
 
             dd($a, '測試用的dd');
-
         }
 
-        dd('測試用內容!' );
-   
-                
+        dd('測試用內容!');
     }
-
 }
