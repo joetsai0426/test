@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Api\V1\Backend\ApiController;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 class TestSmsController 
 {
@@ -23,11 +23,12 @@ class TestSmsController
         {
             $a== 2;
 
+            log::info($a);
             dd($a);
 
         }
 
-        dd('測試用內容' );
+        dd('測試用內容...' );
    
                 
     }
