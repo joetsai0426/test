@@ -13,7 +13,7 @@ class TestSmsController
     {
         // 寄送測試用資料
         $data = [
-            'target' => "+886981895891",
+            'target' => "+886900666333",
             'content' => "[測試]這是用e8d的簡訊內容重構1021-3",
         ];
 
@@ -24,7 +24,7 @@ class TestSmsController
             $a== 2;
 
 
-            dd($a);
+            dd($a, '測試用的dd');
 
         }
 
