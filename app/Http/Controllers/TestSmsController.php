@@ -16,7 +16,6 @@ class TestSmsController
             'content' => "[測試]這是用e8d的簡訊內容重構1021-3",
         ];
 
-
         $a = 3;
 
         if ($a > 3) {
@@ -24,6 +23,6 @@ class TestSmsController
             dd($a, '測試用的dd');
         }
 
-        dd('測試用內容!');
+        dd('測試用內容123!');
     }
 }
