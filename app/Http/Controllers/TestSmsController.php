@@ -18,8 +18,11 @@ class TestSmsController
 
         $a = 3;
 
+        $b = 5;
+
         if ($a > 3) {
             $a == 2;
+
             dd($a, '測試用的dd');
         }
 
