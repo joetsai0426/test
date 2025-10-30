@@ -19,59 +19,59 @@ pipeline {
       }
     }
 
-    // stage('Composer install') {
-    //   steps {
-    //     bat '''
-    //       if exist composer.json (
-    //         echo == Composer install ==
-    //         composer install --no-interaction --prefer-dist
-    //       ) else (
-    //         echo composer.json not found, skip composer install
-    //       )
-    //     '''
-    //   }
-    // }
+    stage('Composer install') {
+      steps {
+        bat '''
+          if exist composer.json (
+            echo == Composer install ==
+            composer install --no-interaction --prefer-dist
+          ) else (
+            echo composer.json not found, skip composer install
+          )
+        '''
+      }
+    }
 
     // 只針對 dev/* 分支做 PHPCS
-    // stage('PHPCS check') {
-    //   when {
-    //     expression { env.BRANCH_NAME ==~ /^dev\\/.*$/ }
-    //   }
-    //   steps {
-    //     script {
-    //       def result = bat(
-    //         script: '''
-    //           echo == 準備報告資料夾 ==
-    //           if not exist build\\reports mkdir build\\reports
+    stage('PHPCS check') {
+      when {
+        expression { env.BRANCH_NAME ==~ /^dev\\/.*$/ }
+      }
+      steps {
+        script {
+          def result = bat(
+            script: '''
+              echo == 準備報告資料夾 ==
+              if not exist build\\reports mkdir build\\reports
 
-    //           set PHPCS=vendor\\bin\\phpcs.bat
-    //           if not exist %PHPCS% set PHPCS=vendor\\bin\\phpcs
-    //           if not exist %PHPCS% set PHPCS=phpcs
+              set PHPCS=vendor\\bin\\phpcs.bat
+              if not exist %PHPCS% set PHPCS=vendor\\bin\\phpcs
+              if not exist %PHPCS% set PHPCS=phpcs
 
-    //           echo 使用 PHPCS：%PHPCS%
-    //           "%PHPCS%" ^
-    //             --standard=PSR12 ^
-    //             --extensions=php ^
-    //             --ignore=vendor/*,node_modules/*,storage/*,bootstrap/cache/*,public/build/* ^
-    //             --report-full ^
-    //             --report-checkstyle=build/reports/phpcs-checkstyle.xml ^
-    //             app\\Http\\Controllers\\TestSmsController.php
-    //         ''',
-    //         returnStatus: true
-    //       )
-    //       if (result != 0) {
-    //         error "PHPCS 檢查未通過，請修正錯誤後再提交。"
-    //       } else {
-    //         echo "PHPCS 檢查通過！"
-    //       }
-    //     }
-    //   }
-    //   post {
-    //     always {
-    //       archiveArtifacts artifacts: 'build/reports/**/*.xml', fingerprint: true, onlyIfSuccessful: false
-    //     }
-    //   }
-    // }
+              echo 使用 PHPCS：%PHPCS%
+              "%PHPCS%" ^
+                --standard=PSR12 ^
+                --extensions=php ^
+                --ignore=vendor/*,node_modules/*,storage/*,bootstrap/cache/*,public/build/* ^
+                --report-full ^
+                --report-checkstyle=build/reports/phpcs-checkstyle.xml ^
+                app\\Http\\Controllers\\TestSmsController.php
+            ''',
+            returnStatus: true
+          )
+          if (result != 0) {
+            error "PHPCS 檢查未通過，請修正錯誤後再提交。"
+          } else {
+            echo "PHPCS 檢查通過！"
+          }
+        }
+      }
+      post {
+        always {
+          archiveArtifacts artifacts: 'build/reports/**/*.xml', fingerprint: true, onlyIfSuccessful: false
+        }
+      }
+    }
 
     // 只有 dev 或 origin/dev 時自動合併到 main（前面失敗則不會執行）
     stage('Merge dev -> main') {

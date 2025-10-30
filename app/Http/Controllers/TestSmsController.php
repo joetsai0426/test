@@ -20,14 +20,13 @@ class TestSmsController
 
         $b = 5;
 
+        $c[] = $data;
+
         if ( $a > 3 ) 
         {
-
             $a += 2;
 
             $b += 5;
-
-            log::info('a = '. $a);
 
             dd($a, '測試用的dd');
         }
