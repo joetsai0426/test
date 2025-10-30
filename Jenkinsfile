@@ -35,7 +35,9 @@ pipeline {
     // 只針對 dev/* 分支做 PHPCS
     stage('PHPCS check') {
       when {
-        expression { env.BRANCH_NAME ==~ /^dev\\/.*$/ }
+        expression { 
+          return (env.BRANCH_NAME == 'dev') || (env.GIT_BRANCH ?: '').endsWith('/dev')
+        }
       }
       steps {
         script {
@@ -59,6 +61,7 @@ pipeline {
             ''',
             returnStatus: true
           )
+
           if (result != 0) {
             error "PHPCS 檢查未通過，請修正錯誤後再提交。"
           } else {

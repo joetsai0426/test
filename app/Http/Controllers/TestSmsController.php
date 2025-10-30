@@ -20,9 +20,9 @@ class TestSmsController
 
         $b = 5;
 
-        $c[] = $data;
+        $c[] = $data ;
 
-        if ( $a > 3 ) 
+        if ( $a > 3 )    
         {
             $a += 2;
 
@@ -30,6 +30,11 @@ class TestSmsController
 
             dd($a, '測試用的dd');
         }
-        dd('測試用內容123!');
+
+        if( $b > 5   )
+        {
+            dd('測試用內容123!');
+        }
+
     }
 }
